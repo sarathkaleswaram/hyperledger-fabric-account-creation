@@ -19,7 +19,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class APIService {
-  url = "http://localhost:3003";
+  url = "http://3.6.125.99:3003";
   frontendUrl = "";
 
   constructor(private http: HttpClient, public platformLocation: PlatformLocation, private router: Router) {
