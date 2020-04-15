@@ -1,0 +1,97 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Accounts</h5>
+                  <span class="h2 font-weight-bold mb-0">{{userAccounts.length}}</span>
+                </div>
+                <div class="col-auto">
+                  <h5 class="card-title text-uppercase text-muted mb-0">On Board Accounts</h5>
+                  <span class="h2 font-weight-bold mb-0">{{onBoardAccounts}}</span>
+                </div>
+              </div>
+              <form>
+                <div class="form-group">
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-users"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Increase Accounts" type="number"
+                      [(ngModel)]="accountsLimit" name="accountsLimit">
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="button" class="btn btn-primary my-1" (click)="limitUpdate()" [disabled]="showSpinner">
+                    <span *ngIf="!showSpinner">Update</span>
+                    <span *ngIf="showSpinner" class="spinner-border spinner-border-sm" role="status"
+                      aria-hidden="true"></span>
+                    <span *ngIf="showSpinner" class="sr-only">Loading...</span>
+                  </button>
+                </div>
+              </form>
+              <div class="alert alert-danger" role="alert" *ngIf="message">
+                {{message}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--7">
+  <div class="row mt-5">
+    <div class="col">
+      <div class="card bg-default shadow">
+        <div class="card-header bg-transparent border-0">
+          <h3 class="text-white mb-0">Accounts List</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-dark table-flush">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Sl. No</th>
+                <th scope="col">Account ID</th>
+                <th scope="col">On Boarding</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of userAccounts; let index = index">
+                <th>
+                  {{index + 1}}
+                </th>
+                <td>
+                  {{user.accountId}}
+                </td>
+                <td>
+                  <span class="badge badge-dot" *ngIf="user.onBoard">
+                    <i class="bg-success"></i> completed
+                  </span>
+                  <span class="badge badge-dot mr-4" *ngIf="!user.onBoard">
+                    <i class="bg-warning"></i> pending
+                  </span>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-secondary btn-sm" #popOver="ngbPopover" ngbPopover="URL Copied."
+                    (click)="copyUrl(user.accountId)">
+                    Copy URL
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+{
+    "port": 3003,
+    "MONGO_URL": "127.0.0.1:27017",
+    "username": "admin",
+    "password": "admin",
+    "connection_file": "connection-profile.json",
+    "channel": "mychannel",
+    "chaincode": "ac",
+    "appAdmin": "admin",
+    "appAdminSecret": "adminpw",
+    "orgMSPID": "Org1MSP",
+    "user": "user1",
+    "caName": "ca.org1.example.com",
+    "gatewayDiscovery": { "enabled": true, "asLocalhost": true }
+}

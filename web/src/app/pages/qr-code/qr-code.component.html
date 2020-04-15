@@ -1,0 +1,36 @@
+<div class="header bg-gradient-danger py-7 py-lg-8">
+  <div class="container">
+    <div class="header-body text-center mb-7">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <h1 class="text-white">Welcome!</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</div>
+
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary shadow">
+        <div class="card-body">
+          <div class="text-center text-muted" *ngIf="url">
+            <qrcode [qrdata]="url" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+            <h4>Scan QR Code to get URL link. <br>(OR)<br>Click below button to open link.</h4>
+            <button type="button" class="btn btn-primary my-4" (click)="openLink()">Open Link</button>
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="!url">
+            Invalid Params.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
