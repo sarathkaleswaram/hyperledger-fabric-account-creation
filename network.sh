@@ -49,7 +49,7 @@ function generateChannelArtifacts() {
   fi
 
   echo "==============  Generating Orderer Genesis block =============="
-  configtxgen -profile TwoOrgsOrdererGenesis -channelID $SYS_CHANNEL -outputBlock ./channel-artifacts/genesis.block
+  configtxgen -profile ACOrdererGenesis -channelID $SYS_CHANNEL -outputBlock ./channel-artifacts/genesis.block
   res=$?
   if [ $res -ne 0 ]; then
     echo "Failed to generate orderer genesis block..."
@@ -57,7 +57,7 @@ function generateChannelArtifacts() {
   fi
   echo
   echo "==============  Generating channel configuration transaction 'channel.tx' =============="
-  configtxgen -profile TwoOrgsChannel -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID $CHANNEL_NAME
+  configtxgen -profile ACChannel -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID $CHANNEL_NAME
   res=$?
   if [ $res -ne 0 ]; then
     echo "Failed to generate channel configuration transaction..."
@@ -65,7 +65,7 @@ function generateChannelArtifacts() {
   fi
   echo
   echo "==============  Generating anchor peer update for Org1MSP  =============="
-  configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org1MSP
+  configtxgen -profile ACChannel -outputAnchorPeersUpdate ./channel-artifacts/Org1MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org1MSP
   res=$?
   if [ $res -ne 0 ]; then
     echo "Failed to generate anchor peer update for Org1MSP..."
@@ -99,7 +99,7 @@ function networkDown() {
 
   docker-compose down --volumes --remove-orphans
   docker-compose -f explorer-docker-compose.yaml down --volumes --remove-orphans
-  docker rmi -f $(docker images | grep ac | awk {'print $3'})
+  docker rmi -f $(docker images | grep dev | awk {'print $3'})
   y | docker network prune
   echo
 
@@ -120,7 +120,7 @@ function startAPI() {
   echo
 
   echo "============== Running API ============="
-  npm run start:dev
+  npm run start:watch
 }
 
 function startWeb() {
@@ -152,8 +152,9 @@ function init() {
     mkdir wallet
 
     curl http://localhost:3003/enrollAdmin
-
+    echo
     curl http://localhost:3003/registerUser
+    echo
 
   fi
 }

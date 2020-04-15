@@ -46,11 +46,11 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 }
 
 func (s *SmartContract) createUser(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
-	if len(args) != 3 {
-		return shim.Error("Incorrect number of arguments. Expecting 3")
+	if len(args) != 4 {
+		return shim.Error("Incorrect number of arguments. Expecting 4")
 	}
 
-	var ac = AccountCreation{AccountId: args[0], Status: args[1], SensitiveData: args[2]}
+	var ac = AccountCreation{AccountId: args[1], Status: args[2], SensitiveData: args[3]}
 
 	acAsBytes, _ := json.Marshal(ac)
 	APIstub.PutState(args[0], acAsBytes)
@@ -218,3 +218,4 @@ func main() {
 		fmt.Printf("Error creating new Smart Contract: %s", err)
 	}
 }
+

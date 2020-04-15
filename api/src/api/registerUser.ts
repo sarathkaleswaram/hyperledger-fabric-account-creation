@@ -3,7 +3,7 @@ import { FileSystemWallet, Gateway, X509WalletMixin } from 'fabric-network';
 import * as path from 'path';
 import { config, ccpPath } from '../server';
 
-export default async function registerParty(req, res) {
+export default async function registerUser(req, res) {
     console.log("\n/registerUser");
     try {
         var appAdmin = config.appAdmin;

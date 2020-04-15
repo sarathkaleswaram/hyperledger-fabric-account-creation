@@ -9,7 +9,7 @@ import logins from './models/logins';
 
 import login from "./api/login"
 import enrollAdmin from "./api/enrollAdmin"
-import registerParty from "./api/registerParty"
+import registerUser from "./api/registerUser"
 import createUser from "./api/createUser"
 import getAllUsers from "./api/getAllUsers"
 import getUserTxs from "./api/getUserTxs"
@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/enrollAdmin", enrollAdmin)
-app.get("/registerParty", registerParty)
+app.get("/registerUser", registerUser)
 app.post("/login", login)
 app.post("/setUsers", setUsers)
 app.get("/getUsers", getUsers)

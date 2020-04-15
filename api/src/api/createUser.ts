@@ -2,6 +2,7 @@ import { FileSystemWallet, Gateway } from 'fabric-network';
 import * as path from 'path';
 import { config, ccpPath } from '../server';
 import { encrypt, decrypt } from '../lib/crypto';
+import users from '../models/users';
 
 export default async function createUser(req, res) {
     console.log("\n/createUser", req.body);
@@ -54,6 +55,11 @@ export default async function createUser(req, res) {
         let acKey = "AC" + usersRecords.length;
 
         console.log("New Key: ", acKey);
+
+	await users.findOneAndUpdate({accountId: req.body.accountId}, {
+	    onBoard: true,
+            ccKey: acKey
+	});
 
         let data = {
             firstname: req.body.firstname,
