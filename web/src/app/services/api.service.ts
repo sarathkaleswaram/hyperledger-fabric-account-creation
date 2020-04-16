@@ -56,4 +56,8 @@ export class APIService {
   createUser(body) {
     return this.http.post(`${this.url}/createUser`, body, httpOptions);
   }
+
+  getAllUsers() {
+    return this.http.get(`${this.url}/getAllUsers`, httpOptions);
+  }
 }

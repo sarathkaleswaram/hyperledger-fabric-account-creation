@@ -11,6 +11,7 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TransactionsComponent } from '../../pages/transactions/transactions.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmedAccountsComponent } from 'src/app/pages/confirmed-accounts/confirmed-accounts.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DashboardComponent,
     UserProfileComponent,
     TransactionsComponent,
+    ConfirmedAccountsComponent,
     IconsComponent
   ]
 })

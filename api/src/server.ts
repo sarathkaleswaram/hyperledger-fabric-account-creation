@@ -65,8 +65,8 @@ app.post("/setUsers", setUsers)
 app.get("/getUsers", getUsers)
 // Chaincode methods
 app.post("/createUser", createUser)
-app.get("/getAllUsers", getAllUsers)
 app.post("/getUserTxs", getUserTxs)
+app.get("/getAllUsers", getAllUsers)
 
 app.listen(PORT, () => {
     console.log(`\nServer is running on port: ${PORT}`)

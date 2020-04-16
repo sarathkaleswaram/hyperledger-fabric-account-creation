@@ -99,6 +99,14 @@ function networkDown() {
 
   docker-compose down --volumes --remove-orphans
   docker-compose -f explorer-docker-compose.yaml down --volumes --remove-orphans
+  
+  CONTAINER_IDS=$(docker ps -a | awk '($13 ~ /dev-peer.*.ac.*/) {print $1}')
+  if [ -z "$CONTAINER_IDS" -o "$CONTAINER_IDS" == " " ]; then
+    echo "---- No containers available for deletion ----"
+  else
+    docker rm -f $CONTAINER_IDS
+  fi
+
   docker rmi -f $(docker images | grep dev | awk {'print $3'})
   y | docker network prune
   echo

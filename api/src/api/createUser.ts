@@ -19,6 +19,16 @@ export default async function createUser(req, res) {
             })
             return;
         }
+        // Check user already on board
+        let userdb = await users.findOne({ accountId: req.body.accountId, onBoard: true }).exec();
+        if (userdb != null) {
+            res.json({
+                status: 'SUCCESS',
+                message: "User already on board."
+            })
+            return;
+        }
+
         var channel = config.channel;
         var chaincode = config.chaincode;
         var gatewayDiscovery = config.gatewayDiscovery;
@@ -56,10 +66,10 @@ export default async function createUser(req, res) {
 
         console.log("New Key: ", acKey);
 
-	await users.findOneAndUpdate({accountId: req.body.accountId}, {
-	    onBoard: true,
+        await users.findOneAndUpdate({ accountId: req.body.accountId }, {
+            onBoard: true,
             ccKey: acKey
-	});
+        });
 
         let data = {
             firstname: req.body.firstname,
