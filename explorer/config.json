@@ -1,0 +1,10 @@
+{
+	"network-configs": {
+		"account-creation": {
+			"name": "account-creation",
+			"profile": "./connection-profile/account-creation.json"
+		}
+	},
+	"license": "Apache-2.0"
+}
+
